@@ -1,0 +1,49 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.wipro.carwash.bean.CarWashBookingBean" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Bookings</title>
+</head>
+<body>
+
+<h2>All Car Wash Bookings</h2>
+
+<%
+    List<CarWashBookingBean> list =
+        (List<CarWashBookingBean>) request.getAttribute("bookingList");
+
+    String message = (String) request.getAttribute("message");
+
+    if (list != null && !list.isEmpty()) {
+
+        for (CarWashBookingBean bean : list) {
+%>
+
+------------------------------------<br>
+Record ID: <%= bean.getRecordId() %><br>
+Customer Name: <%= bean.getCustomerName() %><br>
+Vehicle Number: <%= bean.getVehicleNumber() %><br>
+Wash Type: <%= bean.getWashType() %><br>
+Booking Date: <%= bean.getBookingDate() %><br>
+Time Slot: <%= bean.getTimeSlot() %><br>
+Remarks: <%= bean.getRemarks() %><br>
+------------------------------------<br><br>
+
+<%
+        }
+    } else if (message != null) {
+%>
+
+<%= message %>
+
+<%
+    }
+%>
+
+<br><br>
+<a href="menu.html">Back to Menu</a>
+
+</body>
+</html>
